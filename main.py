@@ -13,6 +13,7 @@ from banks import (
 )
 from enums import BankEnum
 from exceptions import NoBankException
+from response_values import RESPONSE_COLUMNS
 
 logging.basicConfig()
 logger = getLogger(__name__)
@@ -22,7 +23,6 @@ PROJECT_PATH = os.path.abspath(".")
 BANKS_PATH = os.path.join(PROJECT_PATH, "data")
 BANKS_LIST = glob.glob(os.path.join(BANKS_PATH, "bank*"))
 OUTPUT_FILE = "result.csv"
-date_map = ["timestamp", "date", "date_readable"]
 
 
 class Orchestrator:
@@ -31,7 +31,7 @@ class Orchestrator:
         banks = [self.fetch_bank(file) for file in BANKS_LIST]
         [bank.transfer_data() for bank in banks]
         result = pd.concat([bank.df for bank in banks], ignore_index=True)
-        result = result[["timestamp", "type", "amount", "to", "from"]]
+        result = result[RESPONSE_COLUMNS]
         self.to_csv(result)
 
     def fetch_bank(self, file):

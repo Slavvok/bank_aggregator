@@ -3,7 +3,7 @@ import pandas as pd
 from abc import ABC
 from request_values import Bank1Model, Bank2Model, Bank3Model
 
-from response_values import RESPONSE_COLUMNS
+from response_values import RESPONSE_COLUMNS_RENAME_MAP
 RESPONSE_DATETIME_FORMAT = "%d-%m-%Y"
 
 logging.basicConfig()
@@ -20,7 +20,7 @@ class BankBase(ABC):
 
     def transfer_data(self):
         self.validate()
-        self.df = self.df.rename(columns=RESPONSE_COLUMNS)
+        self.df = self.df.rename(columns=RESPONSE_COLUMNS_RENAME_MAP)
         self.transfer_time()
 
     def transfer_time(self):

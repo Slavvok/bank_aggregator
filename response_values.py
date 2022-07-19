@@ -16,4 +16,5 @@ amount = {
     AmountEnum.AMOUNTS.value: AmountEnum.AMOUNT.value,
 }
 
-RESPONSE_COLUMNS = {**timestamp, **type, **amount}
+RESPONSE_COLUMNS_RENAME_MAP = {**timestamp, **type, **amount}
+RESPONSE_COLUMNS = ["timestamp", "type", "amount", "to", "from"]
