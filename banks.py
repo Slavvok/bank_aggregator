@@ -8,6 +8,7 @@ RESPONSE_DATETIME_FORMAT = "%d-%m-%Y"
 
 logging.basicConfig()
 logger = logging.getLogger(__name__)
+logger.setLevel("INFO")
 
 
 class BankBase(ABC):
@@ -35,6 +36,8 @@ class BankBase(ABC):
         except ValueError as e:
             logger.error(f"Validation failed for {self.__class__}. Exception: {e}")
             raise e
+        else:
+            logger.info(f"Validation passsed for {self.__class__}")
 
 
 class Bank1(BankBase):
