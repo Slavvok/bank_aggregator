@@ -1,0 +1,2 @@
+class NoBankException(Exception):
+    pass
