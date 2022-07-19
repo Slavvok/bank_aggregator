@@ -68,5 +68,5 @@ class Bank3(BankBase):
         self.df["amount"] = self.df.apply(lambda x: self.transf(x), axis=1)
         super().transfer_data()
 
-    def transf(self, x):
+    def transf(self, x: pd.DataFrame) -> float:
         return float(f"{x['euro']}.{x['cents']}")
