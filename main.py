@@ -46,11 +46,13 @@ class Orchestrator:
             elif bank == BankEnum.BANK3.value:
                 return Bank3(data)
         except FileNotFoundError as e:
+            message = f"File {file} has not been found. Exception e"
+            logger.error(message)
             raise e
         else:
-            raise NoBankException(
-                f"There is no such bank: {bank}"
-            )
+            message = f"There is no such bank: {bank}"
+            logger.error(message)
+            raise NoBankException(message)
 
     def to_csv(self, banks: pd.DataFrame):
         banks.to_csv(os.path.join(BANKS_PATH, OUTPUT_FILE), index=False)
